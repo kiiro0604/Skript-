@@ -1,0 +1,64 @@
+command /war [<player>]:
+    trigger:
+        if arg 1 is not set:
+            if {warS.%player%} is not set:
+                send "&7[宣戦布告] 現在誰にも宣戦布告していません"
+                stop
+            if {warS.%player%} is true:
+                send "&7[宣戦布告] 現在%{warP.%player%}%に宣戦布告しています"
+                stop
+        if arg 1 is set:
+            if arg 1 = player:
+                send "&7[宣戦布告] 自分自身には宣戦布告できません"
+            else:
+                if {warS.%player%} is not set:
+                    set {warP.%player%} to "%arg-1%"
+                    set {warS.%player%} to true
+                    add "%player% → %{warP.%player%}%" to {warlist::*}
+                    broadcast "&4&l[宣戦布告] %player%が%{warP.%player%}%に宣戦布告しました"
+                    stop
+                if {warS.%player%} is true:
+                    send "&7[宣戦布告] すでに%{warP.%player%}%に宣戦布告しているため宣戦布告できません"
+                    stop
+
+command /warlist:
+    trigger:
+        if {warlist::*} is not set:
+            send "&7[宣戦布告] 現在誰も宣戦布告していません"
+        if {warlist::*} is set:
+            loop {warlist::*}:
+                send "&7[宣戦布告] 宣戦布告リスト" and "&4%loop-value%"
+                stop
+
+command /warremove:
+    aliases: warr
+    trigger:
+        if {warS.%player%} is not set:
+            send "&7[宣戦布告] 宣戦布告をしていないため取り下げできません"
+            stop
+        if {warS.%player%} is true:
+            broadcast "&7[宣戦布告] %player%が%{warP.%player%}%への宣戦布告を取り下げました"
+            remove "%player% → %{warP.%player%}%" from {warlist::*} 
+            clear {warP.%player%}
+            clear {warS.%player%}
+            stop
+
+command /wardebug [<player>]: #自分にも宣戦布告できるやつ
+    trigger:
+        if arg 1 is not set:
+            if {warS.%player%} is not set:
+                send "&7[宣戦布告] 現在誰にも宣戦布告していません"
+                stop
+            if {warS.%player%} is true:
+                send "&7[宣戦布告] 現在%{warP.%player%}%に宣戦布告しています"
+                stop
+        if arg 1 is set:
+            if {warS.%player%} is not set:
+                set {warP.%player%} to "%arg-1%"
+                set {warS.%player%} to true
+                add "%player% → %{warP.%player%}%" to {warlist::*}
+                broadcast "&4&l[宣戦布告] %player%が%{warP.%player%}%に宣戦布告しました"
+                stop
+            if {warS.%player%} is true:
+                send "&7[宣戦布告] すでに%{warP.%player%}%に宣戦布告しているため宣戦布告できません"
+                stop
