@@ -1,0 +1,16 @@
+command /call <player> [<string>]:
+	executable by: player
+	trigger:
+		if arg 2 is set:
+			send "&a%arg-1%&eを呼んでいます"
+			send "&a%player%&eに呼ばれています！" and "&a理由: %colored arg-2%" to arg 1
+			command "/execute %arg 1% ~ ~ ~ /playsound minecraft:block.anvil.place master %arg 1% ~ ~ ~ 0.5 0.5"
+			wait 2 second
+			command "/execute %arg 1% ~ ~ ~ playsound minecraft:block.anvil.place master %arg 1% ~ ~ ~ 0.5 0.5"
+			stop
+		if arg 1 is set:
+			send "&a%arg-1%&eを呼んでいます"
+			send "&a%player%&eに呼ばれています！" to arg 1
+			command "/execute %arg 1% ~ ~ ~ /playsound minecraft:block.anvil.place master %arg 1% ~ ~ ~ 0.5 0.5"
+			wait 2 second
+			command "/execute %arg 1% ~ ~ ~ /playsound minecraft:block.anvil.place master %arg 1% ~ ~ ~ 0.5 0.5"
