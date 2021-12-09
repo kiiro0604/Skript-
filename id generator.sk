@@ -1,0 +1,56 @@
+command /idgenerate [<player>]:
+    aliases: idg
+    permission: idg.idgenerate
+    trigger:
+        if arg 1 is not set:
+            set {idset::*} to "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "0", "1", "2", "3", "4", "5", "6", "7", "8" and "9"
+            set {id1.%player%} to random element out of {idset::*}
+            set {id2.%player%} to random element out of {idset::*}
+            set {id3.%player%} to random element out of {idset::*}
+            set {id4.%player%} to random element out of {idset::*}
+            set {id5.%player%} to random element out of {idset::*}
+            set {id6.%player%} to random element out of {idset::*}
+            set {id7.%player%} to random element out of {idset::*}
+            set {id8.%player%} to random element out of {idset::*}
+            set {ID.%player%} to "%{id1.%player%}%%{id2.%player%}%%{id3.%player%}%%{id4.%player%}%%{id5.%player%}%%{id6.%player%}%%{id7.%player%}%%{id8.%player%}%"
+            send "ID: %{ID.%player%}%"
+            delete {idset::*}
+            stop
+        if arg 1 is set:
+            set {idset::*} to "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "0", "1", "2", "3", "4", "5", "6", "7", "8" and "9"
+            set {id1.%arg 1%} to random element out of {idset::*}
+            set {id2.%arg 1%} to random element out of {idset::*}
+            set {id3.%arg 1%} to random element out of {idset::*}
+            set {id4.%arg 1%} to random element out of {idset::*}
+            set {id5.%arg 1%} to random element out of {idset::*}
+            set {id6.%arg 1%} to random element out of {idset::*}
+            set {id7.%arg 1%} to random element out of {idset::*}
+            set {id8.%arg 1%} to random element out of {idset::*}
+            set {ID.%arg 1%} to "%{id1.%arg 1%}%%{id2.%arg 1%}%%{id3.%arg 1%}%%{id4.%arg 1%}%%{id5.%arg 1%}%%{id6.%arg 1%}%%{id7.%arg 1%}%%{id8.%arg 1%}%"
+            send "ID: %{ID.%arg 1%}%"
+            delete {idset::*}
+            stop
+
+command /idcheck [<offline player>]:
+    aliases: idc
+    permission: idg.idcheck
+    trigger:
+        if arg 1 is not set:
+            send "ID: %{ID.%player%}%"
+            stop
+        if arg 1 is set:
+            send "ID: %{ID.%arg 1%}%"
+            stop
+
+command /idset [<text>] [<text>]:
+    aliases: ids
+    permission: idg.idset
+    trigger:
+        if arg 2 is not set:
+            set {ID.%player%} to "%arg 1%"
+            send "ID: %{ID.%player%}%"
+            stop
+        if arg 2 is set:
+            set {ID.%arg 1%} to "%arg 2%"
+            send "ID: %{ID.%arg 1%}%"
+            stop
