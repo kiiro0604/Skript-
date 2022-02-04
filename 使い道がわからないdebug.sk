@@ -6,57 +6,59 @@
 #インベントリー類--------------------------------------------------------------------
 on inventory click:
     if {debug.%player%} is true:
-        send "INV CHANGE: %event-item% &f%clicked slot%"
+        send "DEBUG.INV CHANGE: %event-item% &f%clicked slot%"
+
+	
 
 on inventory close:
     if {debug.%player%} is true:
-        send "Inventory Close"
+        send "DEBUG.Inventory Close"
 
 on inventory open:
     if {debug.%player%} is true:
-        send "Inventory Open"
+        send "DEBUG.Inventory Open"
 #インベントリー類終了----------------------------------------------------------------
 
 #クリック類-------------------------------------------------------------------------
 on rightclick:
     if {debug.%player%} is true:
-        send "CLICK: RIGHT CLICK %event-item% %event-block%"
+        send "DEBUG.CLICK: RIGHT CLICK %event-item% %event-block%"
 
 on leftclick:
     if {debug.%player%} is true:
-        send "CLICK: LEFT CLICK %event-item% %event-block%"
+        send "DEBUG.CLICK: LEFT CLICK %event-item% %event-block%"
 #クリック類終了---------------------------------------------------------------------
 
 #ブロック類-------------------------------------------------------------------------
 on break:
     if {debug.%player%} is true:
-        send "BREAK: %event-item%"
+        send "DEBUG.BREAK: %event-item%"
 
 on place:
     if {debug.%player%} is true:
-        send "PLACE: %event-item%"
+        send "DEBUG.PLACE: %event-item%"
 #ブロック類終了---------------------------------------------------------------------
 
 #バラ------------------------------------------------------------------------------
 on command:
     if {debug.%player%} is true:
-        send "COMMAND: /%full command%"
+        send "DEBUG.COMMAND: /%full command%"
 
 on consume:
     if {debug.%player%} is true:
-        send "CONSUME: %event-item%"
+        send "DEBUG.CONSUME: %event-item%"
 
 on craft:
     if {debug.%player%} is true:
-        send "CRAFT: %event-item%"
+        send "DEBUG.CRAFT: %event-item%"
 
 on death:
     if {debug.%player%} is true:
-        send "DEATH: DEATH"
+        send "DEBUG.DEATH: DEATH"
 
 on drop:
     if {debug.%player%} is true:
-        send "DROP: %event-item%"
+        send "DEBUG.DROP: %event-item%"
 
 #on flight toggle:
 #    if {debug.%player%} is true:
@@ -66,68 +68,72 @@ on drop:
 
 #サイドバー-------------------------------------------------------------------------
 on any move:
-    wipe player sidebar
-    set name of sidebar of player to "debug"
-    set score "&bMCID: &f%name of player%" in sidebar of player to 10
-    #set score "&bUUID: &f%player's uuid%" in sidebar of player to 9
-    set score "&bUUID: &f未実装" in sidebar of player to 9
-    set score "&bX: &f%player's x-coordinate%" in sidebar of player to 8
-    set score "&bY: &f%player's y-coordinate%" in sidebar of player to 7
-    set score "&bZ: &f%player's z-coordinate%" in sidebar of player to 6
-    set score "&bPITCH: &f%player's pitch%" in sidebar of player to 5
-    set score "&bIP: &f%ip of player%" in sidebar of player to 4
-    set score "&bPING: &f%ping of player%" in sidebar of player to 3
-    set score "&bGAMEMODE: &f%gamemode of player%" in sidebar of player to 2
-    set score "&bHEALTH: &f%player's health%" in sidebar of player to 1
-    set score "&bFOOD: &f%player's food level%" in sidebar of player to 0
+    if {sidedebug.%player%} is true:
+        wipe player sidebar
+        set name of sidebar of player to "debug"
+        set score "&bMCID: &f%name of player%" in sidebar of player to 10
+        #set score "&bUUID: &f%player's uuid%" in sidebar of player to 9
+        set score "&bUUID: &f未実装" in sidebar of player to 9
+        set score "&bX: &f%player's x-coordinate%" in sidebar of player to 8
+        set score "&bY: &f%player's y-coordinate%" in sidebar of player to 7
+        set score "&bZ: &f%player's z-coordinate%" in sidebar of player to 6
+        set score "&bPITCH: &f%player's pitch%" in sidebar of player to 5
+        set score "&bIP: &f%ip of player%" in sidebar of player to 4
+        set score "&bPING: &f%ping of player%" in sidebar of player to 3
+        set score "&bGAMEMODE: &f%gamemode of player%" in sidebar of player to 2
+        set score "&bHEALTH: &f%player's health%" in sidebar of player to 1
+        set score "&bFOOD: &f%player's food level%" in sidebar of player to 0
 
 on hunger meter change:
-    wipe player sidebar
-    set name of sidebar of player to "debug"
-    set score "&bMCID: &f%name of player%" in sidebar of player to 10
-    #set score "&bUUID: &f%player's uuid%" in sidebar of player to 9
-    set score "&bUUID: &f未実装" in sidebar of player to 9
-    set score "&bX: &f%player's x-coordinate%" in sidebar of player to 8
-    set score "&bY: &f%player's y-coordinate%" in sidebar of player to 7
-    set score "&bZ: &f%player's z-coordinate%" in sidebar of player to 6
-    set score "&bPITCH: &f%player's pitch%" in sidebar of player to 5
-    set score "&bIP: &f%ip of player%" in sidebar of player to 4
-    set score "&bPING: &f%ping of player%" in sidebar of player to 3
-    set score "&bGAMEMODE: &f%gamemode of player%" in sidebar of player to 2
-    set score "&bHEALTH: &f%player's health%" in sidebar of player to 1
-    set score "&bFOOD: &f%player's food level%" in sidebar of player to 1
+    if {sidedebug.%player%} is true:
+        wipe player sidebar
+        set name of sidebar of player to "debug"
+        set score "&bMCID: &f%name of player%" in sidebar of player to 10
+        #set score "&bUUID: &f%player's uuid%" in sidebar of player to 9
+        set score "&bUUID: &f未実装" in sidebar of player to 9
+        set score "&bX: &f%player's x-coordinate%" in sidebar of player to 8
+        set score "&bY: &f%player's y-coordinate%" in sidebar of player to 7
+        set score "&bZ: &f%player's z-coordinate%" in sidebar of player to 6
+        set score "&bPITCH: &f%player's pitch%" in sidebar of player to 5
+        set score "&bIP: &f%ip of player%" in sidebar of player to 4
+        set score "&bPING: &f%ping of player%" in sidebar of player to 3
+        set score "&bGAMEMODE: &f%gamemode of player%" in sidebar of player to 2
+        set score "&bHEALTH: &f%player's health%" in sidebar of player to 1
+        set score "&bFOOD: &f%player's food level%" in sidebar of player to 1
 
 on damage of player:
-    wipe victim sidebar
-    set name of sidebar of victim to "debug"
-    set score "&bMCID: &f%name of victim%" in sidebar of victim to 10
-    #set score "&bUUID: &f%victim's uuid%" in sidebar of victim to 9
-    set score "&bUUID: &f未実装" in sidebar of victim to 9
-    set score "&bX: &f%victim's x-coordinate%" in sidebar of victim to 8
-    set score "&bY: &f%victim's y-coordinate%" in sidebar of victim to 7
-    set score "&bZ: &f%victim's z-coordinate%" in sidebar of victim to 6
-    set score "&bPITCH: &f%victim's pitch%" in sidebar of Victim to 5
-    set score "&bIP: &f%ip of victim%" in sidebar of victim to 4
-    set score "&bPING: &f%ping of victim%" in sidebar of victim to 3
-    set score "&bGAMEMODE: &f%gamemode of victim%" in sidebar of victim to 2
-    set score "&bHEALTH: &f%victim's health%" in sidebar of victim to 1
-    set score "&bFOOD: &f%victim's food level%" in sidebar of victim to 0
+    if {sidedebug.%victim%} is true:
+        wipe victim sidebar
+        set name of sidebar of victim to "debug"
+        set score "&bMCID: &f%name of victim%" in sidebar of victim to 10
+        #set score "&bUUID: &f%victim's uuid%" in sidebar of victim to 9
+        set score "&bUUID: &f未実装" in sidebar of victim to 9
+        set score "&bX: &f%victim's x-coordinate%" in sidebar of victim to 8
+        set score "&bY: &f%victim's y-coordinate%" in sidebar of victim to 7
+        set score "&bZ: &f%victim's z-coordinate%" in sidebar of victim to 6
+        set score "&bPITCH: &f%victim's pitch%" in sidebar of Victim to 5
+        set score "&bIP: &f%ip of victim%" in sidebar of victim to 4
+        set score "&bPING: &f%ping of victim%" in sidebar of victim to 3
+        set score "&bGAMEMODE: &f%gamemode of victim%" in sidebar of victim to 2
+        set score "&bHEALTH: &f%victim's health%" in sidebar of victim to 1
+        set score "&bFOOD: &f%victim's food level%" in sidebar of victim to 0
 
 on gamemode change:
-    wipe player sidebar
-    set name of sidebar of player to "debug"
-    set score "&bMCID: &f%name of player%" in sidebar of player to 10
-    #set score "&bUUID: &f%player's uuid%" in sidebar of player to 9
-    set score "&bUUID: &f未実装" in sidebar of player to 9
-    set score "&bX: &f%player's x-coordinate%" in sidebar of player to 8
-    set score "&bY: &f%player's y-coordinate%" in sidebar of player to 7
-    set score "&bZ: &f%player's z-coordinate%" in sidebar of player to 6
-    set score "&bPITCH: &f%player's pitch%" in sidebar of player to 5
-    set score "&bIP: &f%ip of player%" in sidebar of player to 4
-    set score "&bPING: &f%ping of player%" in sidebar of player to 3
-    set score "&bGAMEMODE: &f%gamemode of player%" in sidebar of player to 2
-    set score "&bHEALTH: &f%player's health%" in sidebar of player to 1
-    set score "&bFOOD: &f%player's food level%" in sidebar of player to 0
+    if {sidedebug.%player%} is true:
+        wipe player sidebar
+        set name of sidebar of player to "debug"
+        set score "&bMCID: &f%name of player%" in sidebar of player to 10
+        #set score "&bUUID: &f%player's uuid%" in sidebar of player to 9
+        set score "&bUUID: &f未実装" in sidebar of player to 9
+        set score "&bX: &f%player's x-coordinate%" in sidebar of player to 8
+        set score "&bY: &f%player's y-coordinate%" in sidebar of player to 7
+        set score "&bZ: &f%player's z-coordinate%" in sidebar of player to 6
+        set score "&bPITCH: &f%player's pitch%" in sidebar of player to 5
+        set score "&bIP: &f%ip of player%" in sidebar of player to 4
+        set score "&bPING: &f%ping of player%" in sidebar of player to 3
+        set score "&bGAMEMODE: &f%gamemode of player%" in sidebar of player to 2
+        set score "&bHEALTH: &f%player's health%" in sidebar of player to 1
+        set score "&bFOOD: &f%player's food level%" in sidebar of player to 0
 #サイドバー終了-------------------------------------------------------------------------
 
 #コマンド------------------------------------------------------------------------------
@@ -142,4 +148,16 @@ command /chatdebug:
         if {debug.%player%} is not set:
             send "&aDEBUGモードをオンにしました"
             set {debug.%player%} to true
+
+command /sidedebug:
+    trigger:
+        if {debug.%player%} is true:
+            send "&cDEBUGモードをオフにしました"
+            set {sidedebug.%player%} to false
+        if {debug.%player%} is false:
+            send "&aDEBUGモードをオンにしました"
+            set {sidedebug.%player%} to true
+        if {debug.%player%} is not set:
+            send "&aDEBUGモードをオンにしました"
+            set {sidedebug.%player%} to true
 #コマンド終了---------------------------------------------------------------------------
